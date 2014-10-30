@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: hadoop | Deivinson Tejeda]]></title>
+  <link href="http://deivinsontejeda.github.io/blog/categories/hadoop/atom.xml" rel="self"/>
+  <link href="http://deivinsontejeda.github.io/"/>
+  <updated>2014-10-30T13:57:19-03:00</updated>
+  <id>http://deivinsontejeda.github.io/</id>
+  <author>
+    <name><![CDATA[Deivinson Tejeda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to build Ruydoop yourself]]></title>
+    <link href="http://deivinsontejeda.github.io/blog/2013/07/22/how-to-build-ruydoop-yourself/"/>
+    <updated>2013-07-22T20:49:00-04:00</updated>
+    <id>http://deivinsontejeda.github.io/blog/2013/07/22/how-to-build-ruydoop-yourself</id>
+    <content type="html"><![CDATA[<p>Recently I come working with <a href="http://hadoop.apache.org/">Hadoop</a> and the better Gem I&rsquo;ve seen is <a href="https://github.com/iconara/rubydoop">Rubydoop</a>, but it has an issue with Hadoop 2.0.x, basically does not support it because has been changed its API.</p>
+
+<!-- more -->
+
+
+<p>I created an <a href="https://github.com/iconara/rubydoop/issues/9">issue</a> and few days late received a <a href="https://github.com/iconara/rubydoop/issues/9#issuecomment-18968195">patch</a> to fix it :D, but with a condition: I should build the .jar myself (and gem).</p>
+
+<p>I&rsquo;ll expect that you have set up hadoop 2.0.x.</p>
+
+<h3>1 &ndash; Clone repository</h3>
+
+<p>Very simple, you need clone the repository and switch to branch that has fix.
+<code>
+git clone git@github.com:iconara/rubydoop.git &amp;&amp; \
+cd rubydoop &amp;&amp; \
+git checkout hadoop_204
+</code></p>
+
+<p>Branch <a href="https://github.com/iconara/rubydoop/commit/1db2054246fced0cba0f48ef330adf1b0a8c2f85">hadoop_204</a> has commit.</p>
+
+<h3>2 &ndash; Export MY_RUBY_HOME</h3>
+
+<p>The <a href="https://github.com/iconara/rubydoop/blob/hadoop_204/Rakefile#L15"><code>Rakefile</code></a> expects that you have an environment variable called <code>MY_RUBY_HOME</code>
+<code>
+export MY_RUBY_HOME=/path/home/jruby
+</code></p>
+
+<p>The above path depends on your SO.</p>
+
+<h3>3 &ndash; Create .classpath</h3>
+
+<p>This file was created me more problems, because there is not nothing clean about what is the right content. In fact, I followed <a href="https://github.com/iconara/rubydoop/issues/9#issuecomment-21289355">suggestion made by @iconara</a>, but did not work for me.</p>
+
+<p>This file must be created in root dir where you cloned repository.</p>
+
+<p>As I mentioned earlier, this post expect that you have set up <strong>hadoop 2.0.x</strong></p>
+
+<p>What path I should put into <code>.classpath</code> file?</p>
+
+<p><code>
+hadoop classpath
+</code></p>
+
+<p>The previous command to show you the <code>HADOOP_CLASSPATH</code>, basically where Hadoop has their jars files.</p>
+
+<p>I needed to put two jars into <code>.classpath</code> to everything worked as expected.</p>
+
+<p>Here my <code>.classpath</code></p>
+
+<p><code>
+/path/hadoop/common/hadoop-common-2.0.4-alpha.jar
+/path/hadoop/mapreduce/hadoop-mapreduce-client-core-2.0.4-alpha.jar
+</code></p>
+
+<p>Once you set the right paths the rest it&rsquo;s very simple, you need run the following command.</p>
+
+<p><code>
+rake build
+</code></p>
+
+<p>Whether everything is fine, the previous command should build <code>lib/rubydoop.jar</code> (reason of this post).</p>
+
+<p><code>
+gem build rubydoop.gemspec
+</code></p>
+
+<p>The above command will produce an output like:</p>
+
+<p><code>
+Successfully built RubyGem
+Name: rubydoop
+Version: 1.1.0.pre7
+File: rubydoop-1.1.0.pre7.gem
+</code></p>
+
+<p>Finally, You need install your gem that recently has been built. Just put it in the working directory and run <code>gem install rubydoop</code> Rubygems picks <code>.gem</code> files in the working directory over gems on rubygems.org.</p>
+
+<p>Last but not least, I suggest change the gem version, by this way you can add a specific version in your <code>Gemfile</code> and avoid conflict with current release version. In fact, as you can see I changed Rubydoop version to <code>1.1.0.pre7</code>.</p>
+]]></content>
+  </entry>
+  
+</feed>
