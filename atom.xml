@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Deivinson Tejeda]]></title>
+  <link href="http://deivinsontejeda.github.io/atom.xml" rel="self"/>
+  <link href="http://deivinsontejeda.github.io/"/>
+  <updated>2014-10-30T13:29:17-03:00</updated>
+  <id>http://deivinsontejeda.github.io/</id>
+  <author>
+    <name><![CDATA[Deivinson Tejeda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using Ruby Geocoder Gem Locally]]></title>
+    <link href="http://deivinsontejeda.github.io/blog/2014/10/29/using-ruby-geocoder-gem-locally/"/>
+    <updated>2014-10-29T23:06:00-03:00</updated>
+    <id>http://deivinsontejeda.github.io/blog/2014/10/29/using-ruby-geocoder-gem-locally</id>
+    <content type="html"><![CDATA[<p>These days I have been needing test a small feature (for a personal project) related with Geolocalization. The first and most obvious
+option was used <a href="http://www.rubygeocoder.com">Geocoder</a> which has a number features enough for what I&rsquo;m needing.</p>
+
+<p>Alright I already have settled the gem on my Gemfile, but <em>How I can test this gem on my local environment?</em> due to in the <a href="https://github.com/alexreisner/geocoder#request-geocoding-by-ip-address">docs</a>
+it&rsquo;s clear when you use this Gem with a IP <code>0.0.0.0</code> the <a href="http://www.rubydoc.info/github/alexreisner/geocoder/master/Geocoder/Result">Geocoder::Result</a>
+object is <code>nil</code>.</p>
+
+<p>Fortunately there is a option at least I can figure out this one in order to sort out the previous issue and do test on local.</p>
+
+<p>We&rsquo;re going to use Rack middleware in order to mock the IP with a custom one.</p>
+
+<p>Let&rsquo;s create a file which we called it <code>fake_ip.rb</code> with following content.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">FakeIp</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">ip</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@app</span> <span class="o">=</span> <span class="n">app</span>
+</span><span class='line'>    <span class="vi">@ip</span> <span class="o">=</span> <span class="n">ip</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">env</span><span class="o">[</span><span class="s1">&#39;HTTP_X_FORWARDED_FOR&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">nil</span>
+</span><span class='line'>    <span class="n">env</span><span class="o">[</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">env</span><span class="o">[</span><span class="s1">&#39;action_dispatch.remote_ip&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="vi">@ip</span>
+</span><span class='line'>    <span class="vi">@status</span><span class="p">,</span> <span class="vi">@headers</span><span class="p">,</span> <span class="vi">@response</span> <span class="o">=</span> <span class="vi">@app</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">[</span><span class="vi">@status</span><span class="p">,</span> <span class="vi">@headers</span><span class="p">,</span> <span class="vi">@response</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The previous code is pretty simple, the interesting part is on <code>call</code> method which change the values for some of
+elements <code>env</code>.</p>
+
+<p>In terms very simple The <code>env</code> variable is a hash. That hash contains a lot of useful information including
+request headers and body, as well as run-time environment data that may have been added by upstream middleware.</p>
+
+<p>Now, edit <code>config/application.rb</code> and put:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;FakeIp&#39;</span><span class="p">,</span> <span class="s1">&#39;187.16.144.141&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The previous code allow us to mock the IP with someone custom. Now if you visit a controller a inspect the content</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="n">request</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">country_code</span>
+</span><span class='line'><span class="c1"># should see the country code for IP 187.16.144.141 `BR`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I wrote a small <a href="https://github.com/deivinsontejeda/rack-app">rack-app</a> in order to show you the whole workflow.</p>
+
+<p>Do you know a better way to do this? Share it!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[JRuby Bug Fixed With Regexp Class]]></title>
+    <link href="http://deivinsontejeda.github.io/blog/2013/08/15/jruby-bug-fixed-with-regexp-class/"/>
+    <updated>2013-08-15T17:33:00-04:00</updated>
+    <id>http://deivinsontejeda.github.io/blog/2013/08/15/jruby-bug-fixed-with-regexp-class</id>
+    <content type="html"><![CDATA[<p>I have had some days funny playing with <a href="http://jruby.org/">JRuby</a>, specifically I&rsquo;m working in a DSL <a href="https://github.com/ryan-endacott/verbal_expressions">verbal_expressions</a> to parser URL.</p>
+
+<p><strong>verbal_expressions</strong> is so sexy, very verbose as way it was built and as you can use it. I tested it in MRI and works fine, but in my current project, we need developing a set new features upon JVM, by this reason JRuby plays an important role.</p>
+
+<p>When I made tests using JRuby, I found an weird behaviour, assuming that JRuby allow carry (almost) the whole Ruby code wrote using MRI.</p>
+
+<p>Basically, I made the following code.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Foo</span> <span class="o">&lt;</span> <span class="no">Regexp</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">instance_eval</span> <span class="o">&amp;</span><span class="n">block</span>
+</span><span class='line'>    <span class="k">super</span><span class="p">(</span><span class="s1">&#39;/some_regex/&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Output: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Because I went to use the previous code just like this.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Foo</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">some_method</span> <span class="s1">&#39;Hi!&#39;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see is very simple what I want, just inherit from Regexp, nothing out of usual here. But when I ran the previous code get the following output.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ArgumentError: block not supplied
+</span><span class='line'>    from org/jruby/RubyBasicObject.java:1709:in `instance_eval'
+</span><span class='line'>    from (irb):10:in `initialize'
+</span><span class='line'>    from org/jruby/RubyRegexp.java:729:in `new'
+</span><span class='line'>    from (irb):17:in `evaluate'
+</span><span class='line'>    from org/jruby/RubyKernel.java:1066:in `eval'
+</span><span class='line'>    from org/jruby/RubyKernel.java:1409:in `loop'
+</span><span class='line'>    from org/jruby/RubyKernel.java:1174:in `catch'
+</span><span class='line'>    from org/jruby/RubyKernel.java:1174:in `catch'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With idea to discard some problem in my code I decided test it with a dummy code like follow:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Dummy</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">instance_eval</span> <span class="o">&amp;</span><span class="n">block</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When I run the previous code:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>>> Dummy.new { puts "yay #{self.inspect}" }
+</span><span class='line'>yay #&lt;Dummy:0x54bbb2d0></span></code></pre></td></tr></table></div></figure>
+
+
+<p>Works as expected. In <a href="https://github.com/jruby/jruby/wiki/IRC">JRuby&rsquo;s IRC</a> I explained the previous ones, after <a href="https://github.com/ratnikov">ratnikov</a> made the tests, he confirms it was an issue in RubyRegexp implementation.</p>
+
+<p>Basically, <a href="https://github.com/jruby/jruby/blob/master/core/src/main/java/org/jruby/RubyRegexp.java">RubyRegexp</a> <a href="https://github.com/jruby/jruby/commit/6729d3be83e8a7feead3e636d8bb8018c6af2dbb#L0L907">was ignoring the new&rsquo;s block</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What's #painpoint in JRuby?]]></title>
+    <link href="http://deivinsontejeda.github.io/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/"/>
+    <updated>2013-07-29T10:26:00-04:00</updated>
+    <id>http://deivinsontejeda.github.io/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby</id>
+    <content type="html"><![CDATA[<p>Yesterday from jruby&rsquo;s twitter account started a thread related with biggest <em>pain point</em> when users using jruby. Now, I&rsquo;m getting started to work with jruby, basically combined with Hadoop. I think is very interesting this thread.</p>
+
+<!-- more -->
+
+
+
+
+<div class='embed tweet'>Tweet could not be processed</div>
+
+
+<h3>Here some replies.</h3>
+
+<script src="http://deivinsontejeda.github.io//storify.com/deivinsontejeda/what-s-painpoint-in-jruby.js"></script>
+
+
+<p><noscript>[<a href="http://deivinsontejeda.github.io//storify.com/deivinsontejeda/what-s-painpoint-in-jruby" target="_blank">View the story &ldquo;What&rsquo;s #painpoint in JRuby?&rdquo; on Storify</a>]</noscript></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Build Ruydoop Yourself]]></title>
+    <link href="http://deivinsontejeda.github.io/blog/2013/07/22/how-to-build-ruydoop-yourself/"/>
+    <updated>2013-07-22T20:49:00-04:00</updated>
+    <id>http://deivinsontejeda.github.io/blog/2013/07/22/how-to-build-ruydoop-yourself</id>
+    <content type="html"><![CDATA[<p>Recently I come working with <a href="http://hadoop.apache.org/">Hadoop</a> and the better Gem I&rsquo;ve seen is <a href="https://github.com/iconara/rubydoop">Rubydoop</a>, but it has an issue with Hadoop 2.0.x, basically does not support it because has been changed its API.</p>
+
+<!-- more -->
+
+
+<p>I created an <a href="https://github.com/iconara/rubydoop/issues/9">issue</a> and few days late received a <a href="https://github.com/iconara/rubydoop/issues/9#issuecomment-18968195">patch</a> to fix it :D, but with a condition: I should build the .jar myself (and gem).</p>
+
+<p>I&rsquo;ll expect that you have set up hadoop 2.0.x.</p>
+
+<h3>1 &ndash; Clone repository</h3>
+
+<p>Very simple, you need clone the repository and switch to branch that has fix.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git@github.com:iconara/rubydoop.git && \
+</span><span class='line'>cd rubydoop && \
+</span><span class='line'>git checkout hadoop_204</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Branch <a href="https://github.com/iconara/rubydoop/commit/1db2054246fced0cba0f48ef330adf1b0a8c2f85">hadoop_204</a> has commit.</p>
+
+<h3>2 &ndash; Export MY_RUBY_HOME</h3>
+
+<p>The <a href="https://github.com/iconara/rubydoop/blob/hadoop_204/Rakefile#L15"><code>Rakefile</code></a> expects that you have an environment variable called <code>MY_RUBY_HOME</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export MY_RUBY_HOME=/path/home/jruby</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above path depends on your SO.</p>
+
+<h3>3 &ndash; Create .classpath</h3>
+
+<p>This file was created me more problems, because there is not nothing clean about what is the right content. In fact, I followed <a href="https://github.com/iconara/rubydoop/issues/9#issuecomment-21289355">suggestion made by @iconara</a>, but did not work for me.</p>
+
+<p>This file must be created in root dir where you cloned repository.</p>
+
+<p>As I mentioned earlier, this post expect that you have set up <strong>hadoop 2.0.x</strong></p>
+
+<p>What path I should put into <code>.classpath</code> file?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>hadoop classpath</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The previous command to show you the <code>HADOOP_CLASSPATH</code>, basically where Hadoop has their jars files.</p>
+
+<p>I needed to put two jars into <code>.classpath</code> to everything worked as expected.</p>
+
+<p>Here my <code>.classpath</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/path/hadoop/common/hadoop-common-2.0.4-alpha.jar
+</span><span class='line'>/path/hadoop/mapreduce/hadoop-mapreduce-client-core-2.0.4-alpha.jar</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once you set the right paths the rest it&rsquo;s very simple, you need run the following command.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake build</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Whether everything is fine, the previous command should build <code>lib/rubydoop.jar</code> (reason of this post).</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem build rubydoop.gemspec</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above command will produce an output like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Successfully built RubyGem
+</span><span class='line'>Name: rubydoop
+</span><span class='line'>Version: 1.1.0.pre7
+</span><span class='line'>File: rubydoop-1.1.0.pre7.gem</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, You need install your gem that recently has been built. Just put it in the working directory and run <code>gem install rubydoop</code> Rubygems picks <code>.gem</code> files in the working directory over gems on rubygems.org.</p>
+
+<p>Last but not least, I suggest change the gem version, by this way you can add a specific version in your <code>Gemfile</code> and avoid conflict with current release version. In fact, as you can see I changed Rubydoop version to <code>1.1.0.pre7</code>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Getting Started - Again]]></title>
+    <link href="http://deivinsontejeda.github.io/blog/2013/07/21/getting-started-again/"/>
+    <updated>2013-07-21T15:16:00-04:00</updated>
+    <id>http://deivinsontejeda.github.io/blog/2013/07/21/getting-started-again</id>
+    <content type="html"><![CDATA[<p>Has been a year with many changes, the most important (I think) was get out of my country. Now I&rsquo;m living in Santiago Chile, a beatiful country that received me. A year later, still I&rsquo;m learning so many stuff about inmigration life.</p>
+
+<p>I lost all my previous posts :&ndash;( (although anyone read it)</p>
+
+<p>I hope to write a bit more with main idea to leave this blog like a repositories of notes.</p>
+]]></content>
+  </entry>
+  
+</feed>
