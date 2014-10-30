@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Category: Jruby - Deivinson Tejeda</title>
+  <meta name="author" content="Deivinson Tejeda">
+
+  
+  <meta name="description" content="Category: jruby">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://deivinsontejeda.github.ioblog/categories/jruby">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Deivinson Tejeda" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <div class="all-posts">
+  <div class="container">
+    <div class="row">
+      <div class="list-title col-md-offset-3 col-md-6">
+        <h4>Posts in jruby</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-list">
+    <div class="container">
+      
+        
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <article>
+  <h2><a href="/blog/2013/08/15/jruby-bug-fixed-with-regexp-class/">JRuby Bug Fixed With Regexp Class</a></h2>
+  
+  <p>
+    <p>I have had some days funny playing with <a href="http://jruby.org/">JRuby</a>, specifically I&rsquo;m working in a DSL <a href="https://github.com/ryan-endacott/verbal_expressions">verbal_expressions</a> to parser URL.</p>
+
+<p><strong>verbal_expressions</strong> is so sexy, very verbose as way it was built and as you can use it. I tested it in MRI and works fine, but in my current project, we need developing a set new features upon JVM, by this reason JRuby plays an important role.</p>
+
+<p>When I made tests using JRuby, I found an weird behaviour, assuming that JRuby allow carry (almost) the whole Ruby code wrote using MRI.</p>
+
+<p>Basically, I made the following code.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Foo</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">Regexp</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">block</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;instance_eval &amp;amp;block</span>
+</span><span class='line'><span class="sr">super(&#39;/some</span><span class="n">_regex</span><span class="o">/</span><span class="err">&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &quot;Output: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="sr">&quot;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Because I went to use the previous code just like this.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Foo</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">some_method</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">Hi</span><span class="o">!&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>As you can see is very simple what I want, just inherit from Regexp, nothing out of usual here. But when I ran the previous code get the following output.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ArgumentError: block not supplied&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>from org/jruby/RubyBasicObject.java:1709:in `instance_eval'
+</span><span class='line'>from (irb):10:in `initialize'
+</span><span class='line'>from org/jruby/RubyRegexp.java:729:in `new'
+</span><span class='line'>from (irb):17:in `evaluate'
+</span><span class='line'>from org/jruby/RubyKernel.java:1066:in `eval'
+</span><span class='line'>from org/jruby/RubyKernel.java:1409:in `loop'
+</span><span class='line'>from org/jruby/RubyKernel.java:1174:in `catch'
+</span><span class='line'>from org/jruby/RubyKernel.java:1174:in `catch'
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>With idea to discard some problem in my code I decided test it with a dummy code like follow:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Dummy</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">block</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;instance_eval &amp;amp;block</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>When I run the previous code:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote>&lt;blockquote>&lt;p>Dummy.new { puts &ldquo;yay #{self.inspect}&rdquo; }
+</span><span class='line'>yay #&lt;Dummy:0x54bbb2d0></span></code></pre></td></tr></table></div></figure></notextile></div></p></blockquote></blockquote>
+
+<p>Works as expected. In <a href="https://github.com/jruby/jruby/wiki/IRC">JRuby&rsquo;s IRC</a> I explained the previous ones, after <a href="https://github.com/ratnikov">ratnikov</a> made the tests, he confirms it was an issue in RubyRegexp implementation.</p>
+
+<p>Basically, <a href="https://github.com/jruby/jruby/blob/master/core/src/main/java/org/jruby/RubyRegexp.java">RubyRegexp</a> <a href="https://github.com/jruby/jruby/commit/6729d3be83e8a7feead3e636d8bb8018c6af2dbb#L0L907">was ignoring the new&rsquo;s block</a></p>
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-15T17:33:00-04:00" pubdate data-updated="true">Aug 15<span>th</span>, 2013</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bug/'>bug</a>, <a class='category' href='/blog/categories/fixed/'>fixed</a>, <a class='category' href='/blog/categories/jruby/'>jruby</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+
+          </div>
+        </div>
+      
+        
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <article>
+  <h2><a href="/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/">What's #painpoint in JRuby?</a></h2>
+  
+  <p>
+    <p>Yesterday from jruby&rsquo;s twitter account started a thread related with biggest <em>pain point</em> when users using jruby. Now, I&rsquo;m getting started to work with jruby, basically combined with Hadoop. I think is very interesting this thread.</p>
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-29T10:26:00-04:00" pubdate data-updated="true">Jul 29<span>th</span>, 2013</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jruby/'>jruby</a>, <a class='category' href='/blog/categories/painpoint/'>painpoint</a>
+  
+</span>
+
+
+  </span>
+
+  
+    <a class="full-article-link pull-right" rel="full-article" href="/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/">Read on &rarr;</a>
+  
+</article>
+
+          </div>
+        </div>
+      
+        
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <article>
+  <h2><a href="/blog/2013/07/22/how-to-build-ruydoop-yourself/">How to Build Ruydoop Yourself</a></h2>
+  
+  <p>
+    <p>Recently I come working with <a href="http://hadoop.apache.org/">Hadoop</a> and the better Gem I&rsquo;ve seen is <a href="https://github.com/iconara/rubydoop">Rubydoop</a>, but it has an issue with Hadoop 2.0.x, basically does not support it because has been changed its API.</p>
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-22T20:49:00-04:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2013</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hadoop/'>hadoop</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/jruby/'>jruby</a>, <a class='category' href='/blog/categories/rubydoop/'>rubydoop</a>
+  
+</span>
+
+
+  </span>
+
+  
+    <a class="full-article-link pull-right" rel="full-article" href="/blog/2013/07/22/how-to-build-ruydoop-yourself/">Read on &rarr;</a>
+  
+</article>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/DeivinsonTejeda"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/deivinsontejeda"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+  </body>
+</html>

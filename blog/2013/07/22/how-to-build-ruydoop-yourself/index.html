@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to Build Ruydoop Yourself - Deivinson Tejeda</title>
+  <meta name="author" content="Deivinson Tejeda">
+
+  
+  <meta name="description" content="How to Build Ruydoop Yourself written Jul 22nd, 2013 in hadoop, java, jruby, rubydoop Recently I come working with Hadoop and the better Gem I&rsquo &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://deivinsontejeda.github.io/blog/2013/07/22/how-to-build-ruydoop-yourself">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Deivinson Tejeda" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+
+</head>
+
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
+
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>How to Build Ruydoop Yourself</h1>
+        <div class="meta">
+          written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-22T20:49:00-04:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2013</time>
+          
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hadoop/'>hadoop</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/jruby/'>jruby</a>, <a class='category' href='/blog/categories/rubydoop/'>rubydoop</a>
+  
+</span>
+
+
+        </div>
+        <p>Recently I come working with <a href="http://hadoop.apache.org/">Hadoop</a> and the better Gem I&rsquo;ve seen is <a href="https://github.com/iconara/rubydoop">Rubydoop</a>, but it has an issue with Hadoop 2.0.x, basically does not support it because has been changed its API.</p>
+
+<!-- more -->
+
+
+<p>I created an <a href="https://github.com/iconara/rubydoop/issues/9">issue</a> and few days late received a <a href="https://github.com/iconara/rubydoop/issues/9#issuecomment-18968195">patch</a> to fix it :D, but with a condition: I should build the .jar myself (and gem).</p>
+
+<p>I&rsquo;ll expect that you have set up hadoop 2.0.x.</p>
+
+<h3>1 &ndash; Clone repository</h3>
+
+<p>Very simple, you need clone the repository and switch to branch that has fix.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git@github.com:iconara/rubydoop.git && \
+</span><span class='line'>cd rubydoop && \
+</span><span class='line'>git checkout hadoop_204</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Branch <a href="https://github.com/iconara/rubydoop/commit/1db2054246fced0cba0f48ef330adf1b0a8c2f85">hadoop_204</a> has commit.</p>
+
+<h3>2 &ndash; Export MY_RUBY_HOME</h3>
+
+<p>The <a href="https://github.com/iconara/rubydoop/blob/hadoop_204/Rakefile#L15"><code>Rakefile</code></a> expects that you have an environment variable called <code>MY_RUBY_HOME</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export MY_RUBY_HOME=/path/home/jruby</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above path depends on your SO.</p>
+
+<h3>3 &ndash; Create .classpath</h3>
+
+<p>This file was created me more problems, because there is not nothing clean about what is the right content. In fact, I followed <a href="https://github.com/iconara/rubydoop/issues/9#issuecomment-21289355">suggestion made by @iconara</a>, but did not work for me.</p>
+
+<p>This file must be created in root dir where you cloned repository.</p>
+
+<p>As I mentioned earlier, this post expect that you have set up <strong>hadoop 2.0.x</strong></p>
+
+<p>What path I should put into <code>.classpath</code> file?</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>hadoop classpath</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The previous command to show you the <code>HADOOP_CLASSPATH</code>, basically where Hadoop has their jars files.</p>
+
+<p>I needed to put two jars into <code>.classpath</code> to everything worked as expected.</p>
+
+<p>Here my <code>.classpath</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/path/hadoop/common/hadoop-common-2.0.4-alpha.jar
+</span><span class='line'>/path/hadoop/mapreduce/hadoop-mapreduce-client-core-2.0.4-alpha.jar</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once you set the right paths the rest it&rsquo;s very simple, you need run the following command.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake build</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Whether everything is fine, the previous command should build <code>lib/rubydoop.jar</code> (reason of this post).</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem build rubydoop.gemspec</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above command will produce an output like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Successfully built RubyGem
+</span><span class='line'>Name: rubydoop
+</span><span class='line'>Version: 1.1.0.pre7
+</span><span class='line'>File: rubydoop-1.1.0.pre7.gem</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, You need install your gem that recently has been built. Just put it in the working directory and run <code>gem install rubydoop</code> Rubygems picks <code>.gem</code> files in the working directory over gems on rubygems.org.</p>
+
+<p>Last but not least, I suggest change the gem version, by this way you can add a specific version in your <code>Gemfile</code> and avoid conflict with current release version. In fact, as you can see I changed Rubydoop version to <code>1.1.0.pre7</code>.</p>
+
+
+        <hr class="divider-short"/>
+
+        
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2013/07/21/getting-started-again/" title="Previous Post: Getting started - again">&laquo; Previous: Getting started - again</a>
+        
+
+        
+          <a class="pull-right" href="/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/" title="Next Post: What's #painpoint in JRuby?">Next: What's #painpoint in JRuby? &raquo;</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+  <a href="/"><h4>Home</h4></a>
+</div>
+
+<div class="col-md-2">
+  <div class="social-icon-list">
+    
+    <a href="https://twitter.com/DeivinsonTejeda"><img src="/images/glyphicons_social_31_twitter.png"/></a>
+    
+
+    
+    <a href="https://github.com/deivinsontejeda"><img src="/images/glyphicons_social_21_github.png"/></a>
+    
+
+    
+
+    
+  </div>
+</div>
+
+<div class="pull-right">
+  <h4>Powered by <a href="http://octopress.org/">Octopress</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+</div>
+
+
+    </div>
+  </div>
+</footer>
+
+    
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'deivinsontejeda';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://deivinsontejeda.github.io%2Fblog%2F2013%2F07%2F22%2Fhow-to-build-ruydoop-yourself%2F';
+        var disqus_url = 'http://deivinsontejeda.github.io%2Fblog%2F2013%2F07%2F22%2Fhow-to-build-ruydoop-yourself%2F';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
+  </body>
+</html>

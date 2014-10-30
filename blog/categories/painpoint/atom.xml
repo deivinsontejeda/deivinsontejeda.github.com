@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: painpoint | Deivinson Tejeda]]></title>
+  <link href="http://deivinsontejeda.github.io/blog/categories/painpoint/atom.xml" rel="self"/>
+  <link href="http://deivinsontejeda.github.io/"/>
+  <updated>2014-10-30T13:29:17-03:00</updated>
+  <id>http://deivinsontejeda.github.io/</id>
+  <author>
+    <name><![CDATA[Deivinson Tejeda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[What's #painpoint in JRuby?]]></title>
+    <link href="http://deivinsontejeda.github.io/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/"/>
+    <updated>2013-07-29T10:26:00-04:00</updated>
+    <id>http://deivinsontejeda.github.io/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby</id>
+    <content type="html"><![CDATA[<p>Yesterday from jruby&rsquo;s twitter account started a thread related with biggest <em>pain point</em> when users using jruby. Now, I&rsquo;m getting started to work with jruby, basically combined with Hadoop. I think is very interesting this thread.</p>
+
+<!-- more -->
+
+
+<p><div class='embed tweet'>Tweet could not be processed</div></p>
+
+<h3>Here some replies.</h3>
+
+<script src="http://deivinsontejeda.github.io//storify.com/deivinsontejeda/what-s-painpoint-in-jruby.js"></script>
+
+
+<p><noscript>[<a href="http://deivinsontejeda.github.io//storify.com/deivinsontejeda/what-s-painpoint-in-jruby" target="_blank">View the story &ldquo;What&rsquo;s #painpoint in JRuby?&rdquo; on Storify</a>]</noscript></p>
+]]></content>
+  </entry>
+  
+</feed>
