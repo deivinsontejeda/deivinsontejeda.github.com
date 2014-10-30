@@ -3,14 +3,18 @@
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <title>Deivinson Tejeda</title>
   <meta name="author" content="Deivinson Tejeda">
 
   
-  <meta name="description" content="These days I have been needing test a small feature (for a personal project) related with Geolocalization. The first and most obvious
-option was used &hellip;">
+  <meta name="description" content="Deivinson Tejeda
+A blog for programmers. about me I&#8217;m full stack software developer passionate for new technologies and interested in learn &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -25,92 +29,84 @@ option was used &hellip;">
   <link href="/atom.xml" rel="alternate" title="Deivinson Tejeda" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '25255206']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
 
 </head>
 
-<body   >
-  <header role="banner">
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:deivinsontejeda.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
+  <body>
+    <a href="/" class="home-icon">
+      <img src="/images/home.png"/>
+    </a>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+    <div class="home-page">
+  <div class="hero">
+    <h1>Deivinson Tejeda</h1>
+<p>A blog for programmers.</p>
+
+  </div>
+
+  <div class="home-field">
+    <div class="home-landing her-row">
+      <div class="container">
+        <div class="row">
+          <div id="about-me" class="col-md-offset-3 col-md-6">
+  <h4>about me</h4>
+  <p>I&#8217;m full stack software developer passionate for new technologies and interested in learn new stuff.</p>
+  <div class="social-icon-list">
+  	
+    <a title="Twitter" href="https://twitter.com/DeivinsonTejeda"><img src="/images/glyphicons_social_31_twitter.png"/></a>
     
-      <h1 class="entry-title"><a href="/blog/2014/10/29/using-ruby-geocoder-gem-locally/">Using Ruby Geocoder Gem Locally</a></h1>
+    
+    <a title="GitHub" href="https://github.com/deivinsontejeda"><img src="/images/glyphicons_social_21_github.png"/></a>
     
     
-      <p class="meta">
+    
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="article-list">
+      <div class="container">
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/2014/10/29/using-ruby-geocoder-gem-locally/">Using Ruby Geocoder Gem Locally</a></h2>
   
-
-
-<time datetime="2014-10-29T23:06:00-03:00" pubdate data-updated="true">Oct 29<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>These days I have been needing test a small feature (for a personal project) related with Geolocalization. The first and most obvious
+  <p>
+    <p>These days I have been needing test a small feature (for a personal project) related with Geolocalization. The first and most obvious
 option was used <a href="http://www.rubygeocoder.com">Geocoder</a> which has a number features enough for what I&rsquo;m needing.</p>
+
+
+
 
 <p>Alright I already have settled the gem on my Gemfile, but <em>How I can test this gem on my local environment?</em> due to in the <a href="https://github.com/alexreisner/geocoder#request-geocoding-by-ip-address">docs</a>
 it&rsquo;s clear when you use this Gem with a IP <code>0.0.0.0</code> the <a href="http://www.rubydoc.info/github/alexreisner/geocoder/master/Geocoder/Result">Geocoder::Result</a>
 object is <code>nil</code>.</p>
 
+
+
+
 <p>Fortunately there is a option at least I can figure out this one in order to sort out the previous issue and do test on local.</p>
+
+
+
 
 <p>We&rsquo;re going to use Rack middleware in order to mock the IP with a custom one.</p>
 
+
+
+
 <p>Let&rsquo;s create a file which we called it <code>fake_ip.rb</code> with following content.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -136,78 +132,104 @@ object is <code>nil</code>.</p>
 </span><span class='line'>    <span class="o">[</span><span class="vi">@status</span><span class="p">,</span> <span class="vi">@headers</span><span class="p">,</span> <span class="vi">@response</span><span class="o">]</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>The previous code is pretty simple, the interesting part is on <code>call</code> method which change the values for some of
 elements <code>env</code>.</p>
 
+
+
+
 <p>In terms very simple The <code>env</code> variable is a hash. That hash contains a lot of useful information including
 request headers and body, as well as run-time environment data that may have been added by upstream middleware.</p>
 
+
+
+
 <p>Now, edit <code>config/application.rb</code> and put:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;FakeIp&#39;</span><span class="p">,</span> <span class="s1">&#39;187.16.144.141&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
 
+<p><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">middleware</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;FakeIp&#39;</span><span class="p">,</span> <span class="s1">&#39;187.16.144.141&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>The previous code allow us to mock the IP with someone custom. Now if you visit a controller a inspect the content</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="n">request</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">country_code</span>
-</span><span class='line'><span class="c1"># should see the country code for IP 187.16.144.141 `BR`</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'><span class="c1"># should see the country code for IP 187.16.144.141 <code>BR</code></span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>I wrote a small <a href="https://github.com/deivinsontejeda/rack-app">rack-app</a> in order to show you the whole workflow.</p>
 
+
+
+
 <p>Do you know a better way to do this? Share it!</p>
-</div>
-  
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2014-10-29T23:06:00-03:00" pubdate data-updated="true">Oct 29<span>th</span>, 2014</time>
+    
+
+in
+<span class="categories">
   
+    <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/gems/'>gems</a>, <a class='category' href='/blog/categories/geocoder/'>geocoder</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/15/jruby-bug-fixed-with-regexp-class/">JRuby Bug Fixed With Regexp Class</a></h1>
-    
-    
-      <p class="meta">
+</span>
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
         
-
-
-
-
-
-
-
-
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/2013/08/15/jruby-bug-fixed-with-regexp-class/">JRuby Bug Fixed With Regexp Class</a></h2>
   
+  <p>
+    <p>I have had some days funny playing with <a href="http://jruby.org/">JRuby</a>, specifically I&rsquo;m working in a DSL <a href="https://github.com/ryan-endacott/verbal_expressions">verbal_expressions</a> to parser URL.</p>
 
 
-<time datetime="2013-08-15T17:33:00-04:00" pubdate data-updated="true">Aug 15<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
 
-
-  <div class="entry-content"><p>I have had some days funny playing with <a href="http://jruby.org/">JRuby</a>, specifically I&rsquo;m working in a DSL <a href="https://github.com/ryan-endacott/verbal_expressions">verbal_expressions</a> to parser URL.</p>
 
 <p><strong>verbal_expressions</strong> is so sexy, very verbose as way it was built and as you can use it. I tested it in MRI and works fine, but in my current project, we need developing a set new features upon JVM, by this reason JRuby plays an important role.</p>
 
+
+
+
 <p>When I made tests using JRuby, I found an weird behaviour, assuming that JRuby allow carry (almost) the whole Ruby code wrote using MRI.</p>
+
+
+
 
 <p>Basically, I made the following code.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -225,19 +247,19 @@ request headers and body, as well as run-time environment data that may have bee
 </span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Output: </span><span class="si">#{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Because I went to use the previous code just like this.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Foo</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">some_method</span> <span class="s1">&#39;Hi!&#39;</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
 
+<p><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Foo</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">some_method</span> <span class="s1">&#39;Hi!&#39;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>As you can see is very simple what I want, just inherit from Regexp, nothing out of usual here. But when I ran the previous code get the following output.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -247,19 +269,19 @@ request headers and body, as well as run-time environment data that may have bee
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>ArgumentError: block not supplied
-</span><span class='line'>    from org/jruby/RubyBasicObject.java:1709:in `instance_eval'
-</span><span class='line'>    from (irb):10:in `initialize'
-</span><span class='line'>    from org/jruby/RubyRegexp.java:729:in `new'
-</span><span class='line'>    from (irb):17:in `evaluate'
-</span><span class='line'>    from org/jruby/RubyKernel.java:1066:in `eval'
-</span><span class='line'>    from org/jruby/RubyKernel.java:1409:in `loop'
-</span><span class='line'>    from org/jruby/RubyKernel.java:1174:in `catch'
-</span><span class='line'>    from org/jruby/RubyKernel.java:1174:in `catch'</span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'>    from org/jruby/RubyBasicObject.java:1709:in <code>instance_eval'
+&lt;/span&gt;&lt;span class='line'&gt;    from (irb):10:in</code>initialize&#8217;
+</span><span class='line'>    from org/jruby/RubyRegexp.java:729:in <code>new'
+&lt;/span&gt;&lt;span class='line'&gt;    from (irb):17:in</code>evaluate&#8217;
+</span><span class='line'>    from org/jruby/RubyKernel.java:1066:in <code>eval'
+&lt;/span&gt;&lt;span class='line'&gt;    from org/jruby/RubyKernel.java:1409:in</code>loop&#8217;
+</span><span class='line'>    from org/jruby/RubyKernel.java:1174:in <code>catch'
+&lt;/span&gt;&lt;span class='line'&gt;    from org/jruby/RubyKernel.java:1174:in</code>catch&#8217;</span></code></pre></td></tr></table></div></figure></p>
 
 <p>With idea to discard some problem in my code I decided test it with a dummy code like follow:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+<p><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -269,37 +291,73 @@ request headers and body, as well as run-time environment data that may have bee
 </span><span class='line'>    <span class="nb">instance_eval</span> <span class="o">&amp;</span><span class="n">block</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>When I run the previous code:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>>> Dummy.new { puts "yay #{self.inspect}" }
-</span><span class='line'>yay #&lt;Dummy:0x54bbb2d0></span></code></pre></td></tr></table></div></figure>
 
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>>> Dummy.new { puts &ldquo;yay #{self.inspect}&rdquo; }
+</span><span class='line'>yay #&lt;Dummy:0x54bbb2d0></span></code></pre></td></tr></table></div></figure></p>
 
 <p>Works as expected. In <a href="https://github.com/jruby/jruby/wiki/IRC">JRuby&rsquo;s IRC</a> I explained the previous ones, after <a href="https://github.com/ratnikov">ratnikov</a> made the tests, he confirms it was an issue in RubyRegexp implementation.</p>
 
+
+
+
 <p>Basically, <a href="https://github.com/jruby/jruby/blob/master/core/src/main/java/org/jruby/RubyRegexp.java">RubyRegexp</a> <a href="https://github.com/jruby/jruby/commit/6729d3be83e8a7feead3e636d8bb8018c6af2dbb#L0L907">was ignoring the new&rsquo;s block</a></p>
-</div>
-  
+
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+
+<time datetime="2013-08-15T17:33:00-04:00" pubdate data-updated="true">Aug 15<span>th</span>, 2013</time>
+    
+
+in
+<span class="categories">
   
+    <a class='category' href='/blog/categories/bug/'>bug</a>, <a class='category' href='/blog/categories/fixed/'>fixed</a>, <a class='category' href='/blog/categories/jruby/'>jruby</a>
   
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/">What&#8217;s #painpoint in JRuby?</a></h1>
-    
-    
-      <p class="meta">
+</span>
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
         
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/">What&#8217;s #painpoint in JRuby?</a></h2>
+  
+  <p>
+    <p>Yesterday from jruby&rsquo;s twitter account started a thread related with biggest <em>pain point</em> when users using jruby. Now, I&rsquo;m getting started to work with jruby, basically combined with Hadoop. I think is very interesting this thread.</p>
+
+
+
+
+  </p>
+  <span class="meta">
+    written 
 
 
 
@@ -309,38 +367,45 @@ request headers and body, as well as run-time environment data that may have bee
 
 
   
+
 
 
 <time datetime="2013-07-29T10:26:00-04:00" pubdate data-updated="true">Jul 29<span>th</span>, 2013</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jruby/'>jruby</a>, <a class='category' href='/blog/categories/painpoint/'>painpoint</a>
+  
+</span>
+
+
+  </span>
+
+  
+    <a class="full-article-link pull-right" rel="full-article" href="/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/">Read on &rarr;</a>
+  
+</article>
+
+            </div>
+          </div>
         
-      </p>
-    
-  </header>
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/2013/07/22/how-to-build-ruydoop-yourself/">How to Build Ruydoop Yourself</a></h2>
+  
+  <p>
+    <p>Recently I come working with <a href="http://hadoop.apache.org/">Hadoop</a> and the better Gem I&rsquo;ve seen is <a href="https://github.com/iconara/rubydoop">Rubydoop</a>, but it has an issue with Hadoop 2.0.x, basically does not support it because has been changed its API.</p>
 
 
-  <div class="entry-content"><p>Yesterday from jruby&rsquo;s twitter account started a thread related with biggest <em>pain point</em> when users using jruby. Now, I&rsquo;m getting started to work with jruby, basically combined with Hadoop. I think is very interesting this thread.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/22/how-to-build-ruydoop-yourself/">How to Build Ruydoop Yourself</a></h1>
-    
-    
-      <p class="meta">
-        
+  </p>
+  <span class="meta">
+    written 
 
 
 
@@ -350,151 +415,92 @@ request headers and body, as well as run-time environment data that may have bee
 
 
   
+
 
 
 <time datetime="2013-07-22T20:49:00-04:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2013</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hadoop/'>hadoop</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/jruby/'>jruby</a>, <a class='category' href='/blog/categories/rubydoop/'>rubydoop</a>
+  
+</span>
+
+
+  </span>
+
+  
+    <a class="full-article-link pull-right" rel="full-article" href="/blog/2013/07/22/how-to-build-ruydoop-yourself/">Read on &rarr;</a>
+  
+</article>
+
+            </div>
+          </div>
         
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently I come working with <a href="http://hadoop.apache.org/">Hadoop</a> and the better Gem I&rsquo;ve seen is <a href="https://github.com/iconara/rubydoop">Rubydoop</a>, but it has an issue with Hadoop 2.0.x, basically does not support it because has been changed its API.</p>
-
-</div>
+          
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <article>
+  <h2><a href="/blog/2013/07/21/getting-started-again/">Getting Started - Again</a></h2>
   
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/07/22/how-to-build-ruydoop-yourself/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/21/getting-started-again/">Getting Started - Again</a></h1>
-    
-    
-      <p class="meta">
-        
+  <p>
+    <p>Has been a year with many changes, the most important (I think) was get out of my country. Now I&rsquo;m living in Santiago Chile, a beatiful country that received me. A year later, still I&rsquo;m learning so many stuff about inmigration life.</p>
 
 
 
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-21T15:16:00-04:00" pubdate data-updated="true">Jul 21<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Has been a year with many changes, the most important (I think) was get out of my country. Now I&rsquo;m living in Santiago Chile, a beatiful country that received me. A year later, still I&rsquo;m learning so many stuff about inmigration life.</p>
 
 <p>I lost all my previous posts :&ndash;( (although anyone read it)</p>
 
+
+
+
 <p>I hope to write a bit more with main idea to leave this blog like a repositories of notes.</p>
-</div>
-  
-  
 
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/10/29/using-ruby-geocoder-gem-locally/">Using Ruby Geocoder Gem Locally</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/15/jruby-bug-fixed-with-regexp-class/">JRuby Bug Fixed With Regexp Class</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/29/what-slash-s-number-painpoint-in-jruby/">What&#8217;s #painpoint in JRuby?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/22/how-to-build-ruydoop-yourself/">How to Build Ruydoop Yourself</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/21/getting-started-again/">Getting Started - Again</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/deivinsontejeda">@deivinsontejeda</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'deivinsontejeda',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
+  </p>
+  <span class="meta">
+    written 
 
 
 
-<section class="googleplus">
-  <h1>
-    <a href="https://plus.google.com/110821912419354103082?rel=author">
-      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
-      Google+
-    </a>
-  </h1>
-</section>
+
+
 
 
 
   
-</aside>
 
+
+
+<time datetime="2013-07-21T15:16:00-04:00" pubdate data-updated="true">Jul 21<span>st</span>, 2013</time>
+    
+
+
+  </span>
+
+  
+</article>
+
+            </div>
+          </div>
+        
+      </div>
+    </div>
+
+    <hr class="divider-short"/>
+
+    <div class="archive-link">
+      <h3><a href="/posts/">All Posts</a></h3>
     </div>
   </div>
-  <footer role="contentinfo"><div class="col-md-1">
+</div>
+
+    <footer id="footer" class="her-row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
   <a href="/"><h4>Home</h4></a>
 </div>
 
@@ -519,88 +525,10 @@ request headers and body, as well as run-time environment data that may have bee
 </div>
 
 
+    </div>
+  </div>
 </footer>
-  
 
-<script type="text/javascript">
-      var disqus_shortname = 'deivinsontejeda';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-<script type="text/javascript">
-      var disqus_shortname = 'deivinsontejeda';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-</body>
+    
+  </body>
 </html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Deivinson Tejeda]]></title>
   <link href="http://deivinsontejeda.github.io/atom.xml" rel="self"/>
   <link href="http://deivinsontejeda.github.io/"/>
-  <updated>2014-10-30T14:01:24-03:00</updated>
+  <updated>2014-10-30T14:02:38-03:00</updated>
   <id>http://deivinsontejeda.github.io/</id>
   <author>
     <name><![CDATA[Deivinson Tejeda]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Using Ruby Geocoder gem locally]]></title>
+    <title type="html"><![CDATA[Using Ruby Geocoder Gem Locally]]></title>
     <link href="http://deivinsontejeda.github.io/blog/2014/10/29/using-ruby-geocoder-gem-locally/"/>
     <updated>2014-10-29T23:06:00-03:00</updated>
     <id>http://deivinsontejeda.github.io/blog/2014/10/29/using-ruby-geocoder-gem-locally</id>
@@ -89,7 +89,7 @@ request headers and body, as well as run-time environment data that may have bee
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[JRuby bug fixed with Regexp class]]></title>
+    <title type="html"><![CDATA[JRuby Bug Fixed With Regexp Class]]></title>
     <link href="http://deivinsontejeda.github.io/blog/2013/08/15/jruby-bug-fixed-with-regexp-class/"/>
     <updated>2013-08-15T17:33:00-04:00</updated>
     <id>http://deivinsontejeda.github.io/blog/2013/08/15/jruby-bug-fixed-with-regexp-class</id>
@@ -205,7 +205,7 @@ request headers and body, as well as run-time environment data that may have bee
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[How to build Ruydoop yourself]]></title>
+    <title type="html"><![CDATA[How to Build Ruydoop Yourself]]></title>
     <link href="http://deivinsontejeda.github.io/blog/2013/07/22/how-to-build-ruydoop-yourself/"/>
     <updated>2013-07-22T20:49:00-04:00</updated>
     <id>http://deivinsontejeda.github.io/blog/2013/07/22/how-to-build-ruydoop-yourself</id>
@@ -299,7 +299,7 @@ request headers and body, as well as run-time environment data that may have bee
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Getting started - again]]></title>
+    <title type="html"><![CDATA[Getting Started - Again]]></title>
     <link href="http://deivinsontejeda.github.io/blog/2013/07/21/getting-started-again/"/>
     <updated>2013-07-21T15:16:00-04:00</updated>
     <id>http://deivinsontejeda.github.io/blog/2013/07/21/getting-started-again</id>

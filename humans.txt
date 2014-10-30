@@ -3,9 +3,9 @@
 
 
 /* TEAM */
-  Owner: DEivinson Tejeda
-  Site: http://tejeda.com.ve
-  Twitter: @DeivinsonTejeda
+  Owner: Adrian Artiles
+  Site: http://AdrianArtiles.com
+  Twitter: @AdrianArtiles
 
   UX Designer: Adrian Artiles
   Site: http://AdrianArtiles.com
