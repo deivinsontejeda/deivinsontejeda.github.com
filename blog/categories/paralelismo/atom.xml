@@ -4,7 +4,7 @@
   <title><![CDATA[Category: paralelismo | Deivinson Tejeda]]></title>
   <link href="http://deivinsontejeda.github.io/blog/categories/paralelismo/atom.xml" rel="self"/>
   <link href="http://deivinsontejeda.github.io/"/>
-  <updated>2014-11-08T19:50:53-03:00</updated>
+  <updated>2014-11-08T19:54:23-03:00</updated>
   <id>http://deivinsontejeda.github.io/</id>
   <author>
     <name><![CDATA[Deivinson Tejeda]]></name>
@@ -18,7 +18,7 @@
     <link href="http://deivinsontejeda.github.io/blog/2014/11/05/concurrencia-equals-paralelismo/"/>
     <updated>2014-11-05T17:55:00-03:00</updated>
     <id>http://deivinsontejeda.github.io/blog/2014/11/05/concurrencia-equals-paralelismo</id>
-    <content type="html"><![CDATA[<p>Hace días los amigos de la <a href="http://escuelaweb.net">escuelaweb</a> publicaron un buen articulo relacionado con los lenguages  <em>scripting</em> mas populares (o menos peores) del mercado en dicho <a href="http://blog.escuelaweb.net/php-python-o-ruby-para-que-sirve-cada-uno/">post</a> se hacia una buena descripción de cada uno mostrando sus casos de uso, pros y contras, si aun no lo leen le recomiendo que lo hagan.</p>
+    <content type="html"><![CDATA[<p>Hace días los amigos de la <a href="http://escuelaweb.net">escuelaweb</a> publicaron un buen articulo relacionado con los lenguages  <em>scripting</em> mas populares (o menos peores) del mercado en dicho <a href="http://blog.escuelaweb.net/php-python-o-ruby-para-que-sirve-cada-uno/">post</a> se hacia una buena descripción de cada uno, mostrando sus casos de uso, pros y contras, si aun no lo leen le recomiendo que lo hagan.</p>
 
 <p>Sin embargo encontré referencia a un termino usado y que puede generar algo de confusión, entiendo también que el post fue creado para un publico menos tecnico y quizas entrar en detalles no era necesario. Acá trataré de aclarar el punto en termas bien práctico.</p>
 
